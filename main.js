@@ -19,6 +19,18 @@ $(document).ready(function() {
    document.getElementById(options.callerID).remove();
  });
 
+ var canvas = $('canvas').get(0);
+ var context = canvas.getContext('2d');
+
+ $('#snapshot').click(function() {
+  console.log('button is clicked');
+    if (localVideo.src) {
+      console.log('localVideo.src', localVideo.src);
+      context.drawImage(localVideo, 0, 0);
+      $('img').get(0).src = canvas.toDataURL('image/webp');
+    }
+ })
+
   // var errorCallback = function(e) {
   //   console.log('Reeeejected!', e);
   // };
