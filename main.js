@@ -4,6 +4,7 @@ $(document).ready(function() {
   // var api = new FacePP(API_KEY, API_SECRET);
 
   var comm = new Icecomm('5vKzK4j2Gq5YOt8eJkeKHsqHzj5lWMnZfB6CQXTg6oafn/Y8Hu')
+  var video2;
 
   comm.connect('room');
 
@@ -12,7 +13,9 @@ $(document).ready(function() {
   });
 
   comm.on('connected', function(options) {
+    video2 = options.video.id;
     $('body').append(options.video);
+    // $('video').get(1).attr('id', 'video2');
     // $('body').append('<img id="img2" src="">');
     // $('body').append('<canvas id="canv2" style="display:none;"></canvas>');
   });
@@ -39,7 +42,7 @@ $(document).ready(function() {
     if (localVideo.src) {
       context.fillRect(0, 0, width, height);
       context.drawImage(localVideo, 0, 0, width, height);
-      $('#img1').get(0).src = canvas.toDataURL('image/webp');
+      $('#img1').attr('src', canvas.toDataURL('image/webp'));
     }
   })
 
