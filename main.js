@@ -12,14 +12,16 @@ $(document).ready(function() {
   });
 
   comm.on('connected', function(options) {
-    $('body').get(0).appendChild(options.video);
+    $('body').append(options.video);
+    // $('body').append('<img id="img2" src="">');
+    // $('body').append('<canvas id="canv2" style="display:none;"></canvas>');
   });
 
   comm.on('disconnect', function(options) {
     $('#'+options.callerID).remove();
   });
 
-  var canvas = $('canvas').get(0);
+  var canvas = $('#canv1').get(0);
   var context = canvas.getContext('2d');
   var width; 
   var height;
@@ -37,7 +39,7 @@ $(document).ready(function() {
     if (localVideo.src) {
       context.fillRect(0, 0, width, height);
       context.drawImage(localVideo, 0, 0, width, height);
-      $('img').get(0).src = canvas.toDataURL('image/webp');
+      $('#img1').get(0).src = canvas.toDataURL('image/webp');
     }
   })
 
