@@ -21,25 +21,22 @@ $(document).ready(function() {
 
   var canvas = $('canvas').get(0);
   var context = canvas.getContext('2d');
-  var w, h, ratio;
-  console.log('width', canvas.width, 'height', canvas.height);
+  var width; 
+  var height;
+  var ratio;
   
   localVideo.addEventListener('loadedmetadata', function() {
-    console.log('loadedmetadata event listener reached');
     ratio = localVideo.videoWidth / localVideo.videoHeight;
-    w = localVideo.videoWidth
-    h = parseInt(w/ratio, 10);
-    canvas.width = w;
-    canvas.height = h;
+    width = localVideo.videoWidth
+    height = parseInt(width/ratio, 10);
+    canvas.width = width;
+    canvas.height = height;
   }, false);
 
   $('#snapshot').click(function() {
-    console.log('button is clicked');
     if (localVideo.src) {
-      console.log('w, h, r', w, h, ratio);
-      context.fillRect(0, 0, w, h);
-      context.drawImage(localVideo, 0, 0, w, h);
-      console.log('canvas', canvas.getContext('2d'));
+      context.fillRect(0, 0, width, height);
+      context.drawImage(localVideo, 0, 0, width, height);
       $('img').get(0).src = canvas.toDataURL('image/webp');
     }
   })
