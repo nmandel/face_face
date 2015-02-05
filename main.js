@@ -15,21 +15,34 @@ $(document).ready(function() {
     document.body.appendChild(options.video);
   });
 
- comm.on('disconnect', function(options) {
-   document.getElementById(options.callerID).remove();
- });
+  comm.on('disconnect', function(options) {
+    document.getElementById(options.callerID).remove();
+  });
 
- var canvas = $('canvas').get(0);
- var context = canvas.getContext('2d');
+  var canvas = $('canvas').get(0);
+  var context = canvas.getContext('2d');
+  var w, h, ratio;
+  console.log('width', canvas.width, 'height', canvas.height);
+  
+  localVideo.addEventListener('loadedmetadata', function() {
+    console.log('loadedmetadata event listener reached');
+    ratio = localVideo.videoWidth / localVideo.videoHeight;
+    w = localVideo.videoWidth
+    h = parseInt(w/ratio, 10);
+    canvas.width = w;
+    canvas.height = h;
+  }, false);
 
- $('#snapshot').click(function() {
-  console.log('button is clicked');
+  $('#snapshot').click(function() {
+    console.log('button is clicked');
     if (localVideo.src) {
-      console.log('localVideo.src', localVideo.src);
-      context.drawImage(localVideo, 0, 0);
+      console.log('w, h, r', w, h, ratio);
+      context.fillRect(0, 0, w, h);
+      context.drawImage(localVideo, 0, 0, w, h);
+      console.log('canvas', canvas.getContext('2d'));
       $('img').get(0).src = canvas.toDataURL('image/webp');
     }
- })
+  })
 
   // var errorCallback = function(e) {
   //   console.log('Reeeejected!', e);
