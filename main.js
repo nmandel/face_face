@@ -12,11 +12,11 @@ $(document).ready(function() {
   });
 
   comm.on('connected', function(options) {
-    document.body.appendChild(options.video);
+    $('body').get(0).appendChild(options.video);
   });
 
   comm.on('disconnect', function(options) {
-    document.getElementById(options.callerID).remove();
+    $('#'+options.callerID).remove();
   });
 
   var canvas = $('canvas').get(0);
