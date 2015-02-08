@@ -13,6 +13,7 @@ $(document).ready(function() {
   });
 
   comm.on('connected', function(options) {
+    console.log('options', options);
     video2 = options.video.id;
     $('body').append(options.video);
     // $('video').get(1).attr('id', 'video2');
@@ -24,11 +25,32 @@ $(document).ready(function() {
     $('#'+options.callerID).remove();
   });
 
+
   var canvas = $('#canv1').get(0);
   var context = canvas.getContext('2d');
   var width; 
   var height;
   var ratio;
+
+  var chunkArr = [];
+  
+  comm.on('data', function(options) {
+    var data = options.data;
+    chunkArr.push(data.message);
+    // console.log('options.message is', options.message);
+    console.log(data.last);
+    if (options.data.last) {
+      context.fillRect(0, 0, width, height);
+      context.drawImage(localVideo, 0, 0, width, height);
+      console.log('chunkarr', chunkArr);
+      $('#img1').attr('src', chunkArr.join(''));
+    }
+
+    // console.log('data sent', options.data);
+    
+  })
+
+  var chunkLength = 1000;
   
   localVideo.addEventListener('loadedmetadata', function() {
     ratio = localVideo.videoWidth / localVideo.videoHeight;
@@ -42,7 +64,31 @@ $(document).ready(function() {
     if (localVideo.src) {
       context.fillRect(0, 0, width, height);
       context.drawImage(localVideo, 0, 0, width, height);
-      $('#img1').attr('src', canvas.toDataURL('image/webp'));
+      var dataUrl = canvas.toDataURL('image/webp');
+      console.log(dataUrl);
+      $('#img1').attr('src', dataUrl);
+      function onRead (event, text) {
+        var data = {}; // obj to transmit over icecomm channel
+        // if (event) {
+        //   text = event.target.result;
+        // }
+        if (text.length > chunkLength) {
+          data.message = text.slice(0, chunkLength);
+        }
+        else {
+          data.message = text;
+          data.last = true;
+        }
+        comm.send(data);
+        var remainingDataUrl = text.slice(data.message.length);
+        console.log(data.last, remainingDataUrl.length);
+        if (remainingDataUrl.length) {
+          setTimeout(function() {
+            onRead(null, remainingDataUrl); 
+          }, 350);
+        }
+      }
+      onRead(true, dataUrl);
     }
   })
 
