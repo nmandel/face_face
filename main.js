@@ -4,7 +4,16 @@ $(document).ready(function() {
   // var api = new FacePP(API_KEY, API_SECRET);
 
   var comm = new Icecomm('5vKzK4j2Gq5YOt8eJkeKHsqHzj5lWMnZfB6CQXTg6oafn/Y8Hu')
+
+  var canvas = $('#canv1').get(0);
+  var context = canvas.getContext('2d');
+  var width; 
+  var height;
+  var ratio;
+
   var video2;
+  var canvas2 = $('#canv2').get(0);
+  var context2 = canvas2.getContext('2d');
 
   comm.connect('room');
 
@@ -14,8 +23,11 @@ $(document).ready(function() {
 
   comm.on('connected', function(options) {
     console.log('options', options);
-    video2 = options.video.id;
+    video2 = options.video;
     $('body').append(options.video);
+    canvas2.width = width;
+    canvas2.height = height;
+    console.log('video2', video2, options.video);
     // $('video').get(1).attr('id', 'video2');
     // $('body').append('<img id="img2" src="">');
     // $('body').append('<canvas id="canv2" style="display:none;"></canvas>');
@@ -26,11 +38,6 @@ $(document).ready(function() {
   });
 
 
-  var canvas = $('#canv1').get(0);
-  var context = canvas.getContext('2d');
-  var width; 
-  var height;
-  var ratio;
 
   var chunkArr = [];
   
@@ -40,10 +47,10 @@ $(document).ready(function() {
     // console.log('options.message is', options.message);
     console.log(data.last);
     if (options.data.last) {
-      context.fillRect(0, 0, width, height);
-      context.drawImage(localVideo, 0, 0, width, height);
+      context2.fillRect(0, 0, width, height);
+      context2.drawImage(video2, 0, 0, width, height);
       console.log('chunkarr', chunkArr);
-      $('#img1').attr('src', chunkArr.join(''));
+      $('#img2').attr('src', chunkArr.join(''));
     }
 
     // console.log('data sent', options.data);
