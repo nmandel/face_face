@@ -5,8 +5,8 @@ $(document).ready(function() {
 
   var comm = new Icecomm('5vKzK4j2Gq5YOt8eJkeKHsqHzj5lWMnZfB6CQXTg6oafn/Y8Hu')
 
-  var canvas = $('#canv1').get(0);
-  var context = canvas.getContext('2d');
+  var canvas1 = $('#canv1').get(0);
+  var context = canvas1.getContext('2d');
   var width; 
   var height;
   var ratio;
@@ -24,7 +24,7 @@ $(document).ready(function() {
   comm.on('connected', function(options) {
     console.log('options', options);
     video2 = options.video;
-    $('body').append(options.video);
+    $('.streams').append(options.video);
     canvas2.width = width;
     canvas2.height = height;
     console.log('video2', video2, options.video);
@@ -63,15 +63,15 @@ $(document).ready(function() {
     ratio = localVideo.videoWidth / localVideo.videoHeight;
     width = localVideo.videoWidth
     height = parseInt(width/ratio, 10);
-    canvas.width = width;
-    canvas.height = height;
+    canvas1.width = width;
+    canvas1.height = height;
   }, false);
 
   $('#snapshot').click(function() {
     if (localVideo.src) {
       context.fillRect(0, 0, width, height);
       context.drawImage(localVideo, 0, 0, width, height);
-      var dataUrl = canvas.toDataURL('image/webp');
+      var dataUrl = canvas1.toDataURL('image/webp');
       console.log(dataUrl);
       $('#img1').attr('src', dataUrl);
       function onRead (event, text) {
@@ -155,7 +155,7 @@ $(document).ready(function() {
  //          click(function() {
  //            startLoading();
  //            var scale = Math.min(width / video.videoWidth, height / video.videoHeight, 1);
- //            // draw video on to canvas
+ //            // draw video on to canvas1
  //            var tmpCanvas = document.createElement('canvas');
  //            tmpCanvas.height = video.videoHeight * scale;
  //            tmpCanvas.width = video.videoWidth * scale;
