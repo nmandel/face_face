@@ -1,11 +1,11 @@
 video {
-  display: block;
+/*  display: block;
   float: left;
-  margin: 1% 0 1% 5%;
+  margin: 1% 0 1% 5%;*/
   width: 350px;
 }
 
-video:first-child { margin-left: 0; }
+/*video:first-child { margin-left: 0; }
 
 .section {
   clear: both;
@@ -28,7 +28,7 @@ video:first-child { margin-left: 0; }
 
 #remoteVideo {
   width:100%;
-}
+}*/
 
 img {
   width: 350px;

@@ -36,6 +36,7 @@ $(document).ready(function() {
   });
 
   comm.on('disconnect', function(options) {
+    console.log('disconnect occurred');
     $('#'+options.callerID).replaceWith('<video id="remoteVideo" autoplay></video>');
   });
 
