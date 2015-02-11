@@ -24,6 +24,7 @@ $(document).ready(function() {
   comm.on('connected', function(options) {
     console.log('options', options);
     video2 = options.video;
+
     $('#remoteVideo').replaceWith(video2);
     // $('.streams').append(options.video);
     canvas2.width = width;
@@ -35,7 +36,7 @@ $(document).ready(function() {
   });
 
   comm.on('disconnect', function(options) {
-    $('#'+options.callerID).remove();
+    $('#'+options.callerID).replaceWith('<video id="remoteVideo" autoplay></video>');
   });
 
 
