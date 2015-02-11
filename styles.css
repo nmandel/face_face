@@ -3,6 +3,10 @@ video {
   float: left;
   margin: 1% 0 1% 5%;*/
   width: 30%;
+  /*height: 30%;*/
+}
+
+.section {
   height: 30%;
 }
 
