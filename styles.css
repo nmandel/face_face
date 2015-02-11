@@ -3,6 +3,7 @@ video {
   float: left;
   margin: 1% 0 1% 5%;*/
   width: 30%;
+  height: 30%;
 }
 
 /*video:first-child { margin-left: 0; }
