@@ -4,13 +4,20 @@ video {
   margin: 1% 0 1% 5%;*/
   width: 40%;
   height: auto;
+  padding: 4%;
   /*height: 30%;*/
 }
 
-.section {
+img {
+  width: 40%;
+  height: auto;
+  padding: 4%;
+}
+
+/*.section {
   height: 30%;
   width: 80%;
-}
+}*/
 
 /*video:first-child { margin-left: 0; }
 
