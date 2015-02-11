@@ -1,5 +1,33 @@
 video {
+  display: block;
+  float: left;
+  margin: 1% 0 1% 5%;
   width: 350px;
+}
+
+video:first-child { margin-left: 0; }
+
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+.group:before,
+.group:after {
+  content:"";
+  display:table;
+}
+.group:after {
+  clear:both;
+}
+
+#localVideo {
+  width:47.5%;
+}
+
+#remoteVideo {
+  width:100%;
 }
 
 img {

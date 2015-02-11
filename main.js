@@ -15,7 +15,7 @@ $(document).ready(function() {
   var canvas2 = $('#canv2').get(0);
   var context2 = canvas2.getContext('2d');
 
-  comm.connect('room');
+  comm.connect('room', {audio: false});
 
   comm.on('local', function(options) {
     localVideo.src = options.stream;
@@ -24,7 +24,8 @@ $(document).ready(function() {
   comm.on('connected', function(options) {
     console.log('options', options);
     video2 = options.video;
-    $('.streams').append(options.video);
+    $('#remoteVideo').replaceWith(video2);
+    // $('.streams').append(options.video);
     canvas2.width = width;
     canvas2.height = height;
     console.log('video2', video2, options.video);
