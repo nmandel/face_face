@@ -2,7 +2,7 @@ video {
 /*  display: block;
   float: left;
   margin: 1% 0 1% 5%;*/
-  width: 350px;
+  /*width: 350px;*/
 }
 
 /*video:first-child { margin-left: 0; }
@@ -30,7 +30,7 @@ video {
   width:100%;
 }*/
 
-img {
+/*img {
   width: 350px;
   height: 262px;
-}
+}*/
