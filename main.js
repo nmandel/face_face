@@ -42,6 +42,13 @@ $(document).ready(function() {
     $('#'+options.callerID).replaceWith('<video id="remoteVideo" autoplay></video>');
   });
 
+  comm.on('data', function(options) {
+    console.log(options);
+    context2.fillRect(0, 0, width, height);
+    context2.drawImage(video2, 0, 0, width, height);
+    $('#img2').attr('src', canvas2.toDataURL('image/webp'));
+  })
+
   
   localVideo.addEventListener('loadedmetadata', function() {
     ratio = localVideo.videoWidth / localVideo.videoHeight;
@@ -58,6 +65,7 @@ $(document).ready(function() {
       var dataUrl = canvas1.toDataURL('image/webp');
       console.log(dataUrl);
       $('#img1').attr('src', dataUrl);
+      comm.send('Snapshot taken!');
     }
   })
 });
