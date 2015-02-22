@@ -1,11 +1,34 @@
 video {
-  width: 40%;
+  width: 100%;
   height: auto;
-  padding: 4%;
+  /*padding: 4%;*/
 }
 
 img {
-  width: 40%;
+  width: 100%;
   height: auto;
-  padding: 4%;
+  /*padding: 4%;*/
+}
+
+.equal {
+  display:table;
+  width: 65%;
+  margin: auto;
+  border-spacing: 10px;
+}
+
+.row {
+  display:table-row;
+  /*height: 45%;*/
+}
+
+.box{
+  /*overflow:hidden;*/
+  display:table-cell;
+  position: relative;
+  /*border: 2px solid;*/
+}
+
+button {
+  display: none;
 }

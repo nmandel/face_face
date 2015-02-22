@@ -31,6 +31,7 @@ $(document).ready(function() {
     // $('.streams').append(options.video);
     canvas2.width = width;
     canvas2.height = height;
+    $('button').css('display', 'block');
     console.log('video2', video2, options.video);
     // $('video').get(1).attr('id', 'video2');
     // $('body').append('<img id="img2" src="">');

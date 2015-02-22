@@ -10,16 +10,46 @@
   <body>
     <!-- <pre id="response">Loading...</pre> -->
     <!-- <a class="btn webcam">Webcam</a> -->
-    <div class="section group">
-      <video id="localVideo" autoplay></video>
-      <video id="remoteVideo" autoplay></video>
-    </div>
-    <img id="img1" src="">
-    <canvas id="canv1" style="display:none;"></canvas>
-    <img id="img2" src="">
-    <canvas id="canv2" style="display:none;"></canvas>
+<!--     <div id='wrap'>
+      <div class="center-container">
+        <div class="center-row">
 
-    <button id="snapshot">Take picture</button>
+          <video id="localVideo" class="col-xs-6 bg-one text-center" autoplay></video>
+
+          <video id="remoteVideo" class="col-xs-6 bg-two text-center" autoplay></video>
+        </div>
+        <div class="center-row">
+          <img id="img1" src="" class="col-xs-6 bg-three text-center">
+          <canvas id="canv1" style="display:none;"></canvas>
+          <img id="img2" src="" class="col-xs-6 bg-four text-center">
+          <canvas id="canv2" style="display:none;"></canvas>
+        </div>
+      </div>
+    </div> -->
+    <div class='equal'>
+      <div class='row'>
+        <div class='box'>
+          <video id="localVideo" class="section group" autoplay></video>
+        </div>
+        <div class='box box2'>
+          <video id="remoteVideo" class="section group" autoplay></video>
+          <button id="snapshot">Take picture</button>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div border="3" class='box'>
+          <img id="img1" src="">
+          <canvas id="canv1" style="display:none;"></canvas>
+        </div>
+        <div border="3" class='box'>
+          <img id="img2" src="">
+          <canvas id="canv2" style="display:none;"></canvas>
+        </div>
+      </div>
+    </div>
+
+    
    <!--  <div class="camera-modal">
       <video autoplay width="500" height="375"></video>
       <a class="btn capture" href="#">Capture</a>
