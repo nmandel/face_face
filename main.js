@@ -45,9 +45,9 @@ $(document).ready(function() {
 
   comm.on('data', function(options) {
     console.log(options);
-    context2.fillRect(0, 0, width, height);
-    context2.drawImage(video2, 0, 0, width, height);
-    $('#img2').attr('src', canvas2.toDataURL('image/webp'));
+    context.fillRect(0, 0, width, height);
+    context.drawImage(video2, 0, 0, width, height);
+    $('#img1').attr('src', canvas1.toDataURL('image/webp'));
   })
 
   
@@ -61,11 +61,11 @@ $(document).ready(function() {
 
   $('#snapshot').click(function() {
     if (localVideo.src) {
-      context.fillRect(0, 0, width, height);
-      context.drawImage(localVideo, 0, 0, width, height);
-      var dataUrl = canvas1.toDataURL('image/webp');
+      context2.fillRect(0, 0, width, height);
+      context2.drawImage(localVideo, 0, 0, width, height);
+      var dataUrl = canvas2.toDataURL('image/webp');
       console.log(dataUrl);
-      $('#img1').attr('src', dataUrl);
+      $('#img2').attr('src', dataUrl);
       comm.send('Snapshot taken!');
     }
   })
