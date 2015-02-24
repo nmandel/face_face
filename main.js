@@ -66,6 +66,24 @@ $(document).ready(function() {
       comm.send('Snapshot taken!');
     }
   })
+
+  $('#detector').click(function() {
+    console.log('detector clicked');
+    (function() {
+      api.request('detection/detect', {
+        url: 'http://media4.popsugar-assets.com/files/2014/05/13/777/n/1922398/d7a6dc419f02e260_thumb_temp_image143449891400002362.xxlarge/i/Dave-Franco-Describes-His-Neighbors-Sex-Scene-Explicit-Detail.jpg'
+      }, function(err, result) {
+        if (err) {
+          console.log('error', err);
+          // TODO handle error
+          return;
+        }
+        console.log('results');
+        // TODO use result
+        console.log(JSON.stringify(result, null, 2));
+      });
+    })();
+  })
 });
 
 

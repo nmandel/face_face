@@ -6,26 +6,31 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="https://cdn.icecomm.io/icecomm.js"></script>
     <link href="styles.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="facepp-sdk.js"></script>
   </head>
   <body>
-    <!-- <pre id="response">Loading...</pre> -->
-    <!-- <a class="btn webcam">Webcam</a> -->
-<!--     <div id='wrap'>
-      <div class="center-container">
-        <div class="center-row">
+<!-- 
+  <pre id="response">Loading...</pre>
+    <script type="text/javascript" src="facepp-sdk.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var api = new FacePP('0ef14fa726ce34d820c5a44e57fef470', '4Y9YXOMSDvqu1Ompn9NSpNwWQFHs1hYD');
+        api.request('detection/detect', {
+          url: 'http://media4.popsugar-assets.com/files/2014/05/13/777/n/1922398/d7a6dc419f02e260_thumb_temp_image143449891400002362.xxlarge/i/Dave-Franco-Describes-His-Neighbors-Sex-Scene-Explicit-Detail.jpg'
+        }, function(err, result) {
+          if (err) {
+            console.log('error', err);
+            // TODO handle error
+            return;
+          }
+          console.log('should have res');
+          // TODO use result
+          document.getElementById('response').innerHTML = JSON.stringify(result, null, 2);
+        });
+      })();
+    </script>
+ -->
 
-          <video id="localVideo" class="col-xs-6 bg-one text-center" autoplay></video>
-
-          <video id="remoteVideo" class="col-xs-6 bg-two text-center" autoplay></video>
-        </div>
-        <div class="center-row">
-          <img id="img1" src="" class="col-xs-6 bg-three text-center">
-          <canvas id="canv1" style="display:none;"></canvas>
-          <img id="img2" src="" class="col-xs-6 bg-four text-center">
-          <canvas id="canv2" style="display:none;"></canvas>
-        </div>
-      </div>
-    </div> -->
     <div class='equal'>
       <div class='row'>
         <div class='box'>
@@ -49,14 +54,8 @@
       </div>
     </div>
 
+    <button id="detector">Detect</button>
     
-   <!--  <div class="camera-modal">
-      <video autoplay width="500" height="375"></video>
-      <a class="btn capture" href="#">Capture</a>
-    </div> -->
-    
-    <!-- <script type="text/javascript" src="facepp-sdk.js"></script> -->
     <script type="text/javascript" src="main.js"></script>
-    <!-- <input id="pic-btn" type="button" value="clickme" /> -->
   </body>
 </html>
