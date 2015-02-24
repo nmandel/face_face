@@ -1,8 +1,10 @@
 $(document).ready(function() {
-  // var API_KEY = '0ef14fa726ce34d820c5a44e57fef470';
-  // var API_SECRET = '4Y9YXOMSDvqu1Ompn9NSpNwWQFHs1hYD';
-  // var api = new FacePP(API_KEY, API_SECRET);
+  // for face++ integration
+  var API_KEY = '0ef14fa726ce34d820c5a44e57fef470';
+  var API_SECRET = '4Y9YXOMSDvqu1Ompn9NSpNwWQFHs1hYD';
+  var api = new FacePP(API_KEY, API_SECRET);
 
+  // for icecomm integration
   var comm = new Icecomm('5vKzK4j2Gq5YOt8eJkeKHsqHzj5lWMnZfB6CQXTg6oafn/Y8Hu')
 
   var localCanvas = $('#canv1').get(0);
@@ -27,15 +29,10 @@ $(document).ready(function() {
 
     remoteVideo.src = options.stream;
     remoteVideo.id = options.callerID;
-    // $('#remoteVideo').replaceWith(remoteVid);
-    // $('.streams').append(options.video);
     remoteCanvas.width = width;
     remoteCanvas.height = height;
     $('button').css('display', 'block');
     console.log('remoteVid', remoteVid, options.video);
-    // $('video').get(1).attr('id', 'remoteVid');
-    // $('body').append('<img id="img2" src="">');
-    // $('body').append('<canvas id="canv2" style="display:none;"></canvas>');
   });
 
   comm.on('disconnect', function(options) {
