@@ -5,15 +5,15 @@ $(document).ready(function() {
 
   var comm = new Icecomm('5vKzK4j2Gq5YOt8eJkeKHsqHzj5lWMnZfB6CQXTg6oafn/Y8Hu')
 
-  var canvas1 = $('#canv1').get(0);
-  var context = canvas1.getContext('2d');
+  var localCanvas = $('#canv1').get(0);
+  var localContext = localCanvas.getContext('2d');
   var width; 
   var height;
   var ratio;
 
-  var video2;
-  var canvas2 = $('#canv2').get(0);
-  var context2 = canvas2.getContext('2d');
+  var remoteVid;
+  var remoteCanvas = $('#canv2').get(0);
+  var remoteContext = remoteCanvas.getContext('2d');
 
   comm.connect('room', {audio: false});
 
@@ -23,17 +23,17 @@ $(document).ready(function() {
 
   comm.on('connected', function(options) {
     console.log('options', options);
-    video2 = options.video;
+    remoteVid = options.video;
 
     remoteVideo.src = options.stream;
     remoteVideo.id = options.callerID;
-    // $('#remoteVideo').replaceWith(video2);
+    // $('#remoteVideo').replaceWith(remoteVid);
     // $('.streams').append(options.video);
-    canvas2.width = width;
-    canvas2.height = height;
+    remoteCanvas.width = width;
+    remoteCanvas.height = height;
     $('button').css('display', 'block');
-    console.log('video2', video2, options.video);
-    // $('video').get(1).attr('id', 'video2');
+    console.log('remoteVid', remoteVid, options.video);
+    // $('video').get(1).attr('id', 'remoteVid');
     // $('body').append('<img id="img2" src="">');
     // $('body').append('<canvas id="canv2" style="display:none;"></canvas>');
   });
@@ -45,9 +45,9 @@ $(document).ready(function() {
 
   comm.on('data', function(options) {
     console.log(options);
-    context.fillRect(0, 0, width, height);
-    context.drawImage(video2, 0, 0, width, height);
-    $('#img1').attr('src', canvas1.toDataURL('image/webp'));
+    localContext.fillRect(0, 0, width, height);
+    localContext.drawImage(remoteVid, 0, 0, width, height);
+    $('#img1').attr('src', localCanvas.toDataURL('image/webp'));
   })
 
   
@@ -55,15 +55,15 @@ $(document).ready(function() {
     ratio = localVideo.videoWidth / localVideo.videoHeight;
     width = localVideo.videoWidth
     height = parseInt(width/ratio, 10);
-    canvas1.width = width;
-    canvas1.height = height;
+    localCanvas.width = width;
+    localCanvas.height = height;
   }, false);
 
   $('#snapshot').click(function() {
     if (localVideo.src) {
-      context2.fillRect(0, 0, width, height);
-      context2.drawImage(localVideo, 0, 0, width, height);
-      var dataUrl = canvas2.toDataURL('image/webp');
+      remoteContext.fillRect(0, 0, width, height);
+      remoteContext.drawImage(localVideo, 0, 0, width, height);
+      var dataUrl = remoteCanvas.toDataURL('image/webp');
       console.log(dataUrl);
       $('#img2').attr('src', dataUrl);
       comm.send('Snapshot taken!');
@@ -80,8 +80,8 @@ $(document).ready(function() {
   //   var data = options.data;
   //   chunkArr.push(data.message);
   //   if (options.data.last) {
-  //     context2.fillRect(0, 0, width, height);
-  //     context2.drawImage(video2, 0, 0, width, height);
+  //     remoteContext.fillRect(0, 0, width, height);
+  //     remoteContext.drawImage(remoteVid, 0, 0, width, height);
   //     console.log('chunkarr', chunkArr);
   //     $('#img2').attr('src', chunkArr.join(''));
   //   }
