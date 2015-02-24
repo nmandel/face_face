@@ -13,6 +13,7 @@ $(document).ready(function() {
   var height;
   var ratio;
 
+  var dataUrl;
   var remoteVid;
   var remoteCanvas = $('#canv2').get(0);
   var remoteContext = remoteCanvas.getContext('2d');
@@ -60,7 +61,7 @@ $(document).ready(function() {
     if (localVideo.src) {
       remoteContext.fillRect(0, 0, width, height);
       remoteContext.drawImage(localVideo, 0, 0, width, height);
-      var dataUrl = remoteCanvas.toDataURL('image/webp');
+      dataUrl = remoteCanvas.toDataURL('image/webp');
       console.log(dataUrl);
       $('#img2').attr('src', dataUrl);
       comm.send('Snapshot taken!');
