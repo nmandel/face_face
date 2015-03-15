@@ -13,15 +13,15 @@ server.use(express.static('.'));
 server.listen(process.env.PORT || 3000);
 
 server.post('/', function(req, res) {
-  console.log('req.body', req.body);
-  // request.get({url: dataUrl, encoding: binary}, function(err, response, body) {
-  //   fs.writeFile("/img/test.jpg", body, 'binary', function(err) {
-  //     if (err) {
-  //       console.log('err', err);
-  //     }
-  //     else {
-  //       console.log("File saved!");
-  //     }
-  //   })
-  // });
+  console.log('req.body', typeof req.body.data);
+  request.get({url: req.body.data/**, encoding: binary**/}, function(err, response, body) {
+    fs.writeFile("img/test.jpg", req.body.data, 'binary', function(err) {
+      if (err) {
+        console.log('err', err);
+      }
+      else {
+        console.log("File saved!");
+      }
+    })
+  });
 })

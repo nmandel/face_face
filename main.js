@@ -75,7 +75,7 @@ $(document).ready(function() {
       contentType: 'application/json',
       data: JSON.stringify({data: dataUrl}),
       success: function(data) {
-        console.log('success. data: ', data);
+        console.log('success. data: ', data.charAt(0));
       },
       error: function() {
         console.log('ajax err');
